@@ -81,29 +81,6 @@ history = model.fit(
 
 model.save("fruit-modal2.keras")
 
-def predictFruit(fruit, fruitPath, model):
-    correct_fruit = 0
-    imagePath = pl.Path(fruitPath)
-    pathLength = 0
-    for image in imagePath.iterdir():
-        pathLength += 1
-        img = tf.keras.utils.load_img(image, target_size=(224,224))
-        img_array = tf.keras.utils.img_to_array(img)
-        img_array = img_array / 255
-        img_array = tf.expand_dims(img_array, 0)
-        prediction = model.predict(img_array)
-        predicted_class = class_names[np.argmax(prediction)]
-        if(predicted_class == fruit):
-            correct_fruit += 1
 
-    accuracy = (correct_fruit / pathLength)  * 100
-    print("Accuracy for ", fruit, " : ", accuracy, "%")
-
-
-predictFruit("Apple", "D:/Fruits Classification/test/Apple", model)
-predictFruit("Banana", "D:/Fruits Classification/test/Banana", model)
-predictFruit("Grape", "D:/Fruits Classification/test/Grape", model)
-predictFruit("Mango", "D:/Fruits Classification/test/Mango", model)
-predictFruit("Strawberry", "D:/Fruits Classification/test/Strawberry", model)
 
 
