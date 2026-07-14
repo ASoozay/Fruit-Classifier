@@ -3,8 +3,6 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
-print("Running prediction script...")
-
 test_ds = tf.keras.utils.image_dataset_from_directory(
     "D:/Fruits Classification/test",
     image_size = (224, 224),
@@ -14,7 +12,7 @@ test_ds = tf.keras.utils.image_dataset_from_directory(
 class_names = test_ds.class_names
 print(class_names)
 
-model = tf.keras.models.load_model("fruit-modal2.keras")
+model = tf.keras.models.load_model("fruit-modal6.keras")
 
 normalization = tf.keras.layers.Rescaling(1./255)
 test_ds = test_ds.map(lambda x, y: (normalization(x), y))
